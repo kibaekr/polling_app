@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218051405) do
+ActiveRecord::Schema.define(version: 20131218082102) do
+
+  create_table "ip_lists", force: true do |t|
+    t.integer  "poll_id"
+    t.string   "ip_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "items", force: true do |t|
     t.string   "title"
-    t.integer  "votes"
+    t.integer  "votes",      default: 0
     t.integer  "poll_id"
     t.datetime "created_at"
     t.datetime "updated_at"

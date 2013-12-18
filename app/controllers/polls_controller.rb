@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-  
+  before_filter :vote_casted?, only: [:edit, :update]
   # GET /polls
   # GET /polls.json
   def index
@@ -62,6 +62,17 @@ class PollsController < ApplicationController
     end
   end
 
+  protected
+
+    def vote_casted?
+      poll = Poll.find(params[:id])
+      #check if poll has any votes
+      votes = poll.items.collect(&:votes).uniq
+      if votes.max > 0 
+        redirect_to poll_path(poll), alert: "You cannot edit the poll because someone has already voted on it."   
+      end
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
@@ -72,4 +83,5 @@ class PollsController < ApplicationController
     def poll_params
       params.require(:poll).permit(:title, items_attributes: [:title, :vote, :poll_id, :_destroy])
     end
+
 end

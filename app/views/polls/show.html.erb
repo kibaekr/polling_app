@@ -11,8 +11,14 @@
 <ul>
   <% @poll.items.each do |item| %>
   <li>
-    <%= item.title %> . <%= item.votes %> + <%= link_to "vote", vote_up_poll_item_path(@poll, item), :method => :put %>
-  </li>
+    <%= item.title %>: 
+
+    <% if @poll.ip_lists.find_by_ip_address(request.remote_ip) %>
+      <%= item.votes || "0" %> votes 
+    <% else %>
+      <%= link_to "vote", vote_up_poll_item_path(@poll, item), :method => :put %>
+    <% end %>
+  </li><br />
   <% end %>
 </ul>
 

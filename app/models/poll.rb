@@ -4,6 +4,8 @@ class Poll < ActiveRecord::Base
 
   has_many :items, :dependent => :destroy
   accepts_nested_attributes_for :items, :reject_if => lambda { |a| a[:title].blank? }, :allow_destroy => true
+
+  has_many :ip_lists
   
   private
     def require_two_items
