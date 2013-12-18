@@ -3,4 +3,8 @@ class Item < ActiveRecord::Base
 
   belongs_to :poll
 
+  # def vote
+  #   increment!(:votes)
+  # end
+
 end

@@ -11,7 +11,7 @@
 <ul>
   <% @poll.items.each do |item| %>
   <li>
-    <%= item.title %>
+    <%= item.title %> . <%= item.votes %> + <%= link_to "vote", vote_up_poll_item_path(@poll, item), :method => :put %>
   </li>
   <% end %>
 </ul>

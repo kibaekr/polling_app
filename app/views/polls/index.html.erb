@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:title)%></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,7 +15,7 @@
     <% @polls.each do |poll| %>
       <tr>
         <td><%= link_to poll.id, poll_path(poll) %></td>
-        <td><%= poll.title %></td>
+        <td><%= link_to poll.title, poll_path(poll) %></td>
         <td><%=l poll.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

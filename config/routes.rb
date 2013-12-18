@@ -1,5 +1,11 @@
 PollingApp::Application.routes.draw do
-  resources :polls
+  resources :polls do
+    resources :items do 
+      member do 
+        put :vote_up
+      end
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
