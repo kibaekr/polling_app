@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /polls
   # GET /polls.json
   def index
@@ -15,7 +15,7 @@ class PollsController < ApplicationController
   # GET /polls/new
   def new
     @poll = Poll.new
-    2.times { @poll.items.build }
+    @poll.items.build
   end
 
   # GET /polls/1/edit
@@ -70,6 +70,6 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:title, items_attributes: [:title, :vote, :poll_id])
+      params.require(:poll).permit(:title, items_attributes: [:title, :vote, :poll_id, :_destroy])
     end
 end
