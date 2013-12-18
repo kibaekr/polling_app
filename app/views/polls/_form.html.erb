@@ -16,12 +16,10 @@
 
   <div id="items">
     <%= f.fields_for :items do |item| %>
-      <div class="controls">
         <%= render 'item_fields', :f => item %> 
-      </div>
     <% end %>
     <div class="links">
-      <%= link_to_add_association "Add Item", f, :items %>
+      <%= link_to_add_association "Add Item", f, :items, partial: 'item_fields' %>
     </div>
   </div>
 

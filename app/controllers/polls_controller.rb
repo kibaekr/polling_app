@@ -15,7 +15,6 @@ class PollsController < ApplicationController
   # GET /polls/new
   def new
     @poll = Poll.new
-    @poll.items.build
   end
 
   # GET /polls/1/edit
@@ -67,7 +66,7 @@ class PollsController < ApplicationController
     def vote_casted?
       poll = Poll.find(params[:id])
       #check if poll has any votes
-      votes = poll.items.collect(&:votes).uniq
+      votes = poll.items.collect(&:votes).uniq 
       if votes.max > 0 
         redirect_to poll_path(poll), alert: "You cannot edit the poll because someone has already voted on it."   
       end
@@ -81,7 +80,7 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require(:poll).permit(:title, items_attributes: [:title, :vote, :poll_id, :_destroy])
+      params.require(:poll).permit(:title, items_attributes: [:id, :title, :vote, :poll_id, :_destroy])
     end
 
 end
